@@ -60,7 +60,7 @@ var geoJson = [{
 }];
 
 var map = L.mapbox.map('map', 'luis.map-yehmq8vd', {zoomControl: false})
-    .setView([42.36900, -71.11568], 16);
+    .setView([42.36980, -71.11568], 16);
 map.dragging.disable();
 map.touchZoom.disable();
 map.doubleClickZoom.disable();
@@ -78,7 +78,7 @@ function onMapClick(e) {
         .openOn(map);
 }
 
-map.on('click', onMapClick);
+//map.on('click', onMapClick);
 
 map.markerLayer.on('ready', function(e) {
     this.eachLayer(function(marker) {
