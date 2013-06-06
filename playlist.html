@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js'></script>
+  <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css' rel='stylesheet' />
+  <!--[if lte IE 8]>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.ie.css' rel='stylesheet' >
+  <![endif]-->
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+<div style="margin-top:50px; margin-left:50px">
+    <iframe src="https://embed.spotify.com/?uri=spotify:user:luisbrandao:playlist:6BknjnlWzg1pkyAl6XnBz1&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+
+</div>
+
+<div id='map' style="width: 600px; height: 400px; margin-left:400px; margin-top:50px;"></div>
+<script>
+var geoJson = [{
+    type: 'Feature',
+    "geometry": { "type": "Point", "coordinates": [-71.11596,42.36717]},
+    "properties": {
+        "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Cherry_Blossoms_and_Washington_Monument.jpg/320px-Cherry_Blossoms_and_Washington_Monument.jpg",
+        "url": "http://en.wikipedia.org/wiki/Washington,_D.C.",
+        "marker-symbol": "star",
+        "city": "Washington, D.C.",
+        'embed': '<iframe src="https://embed.spotify.com/?uri=spotify:track:6SHU2vDa32Cv9JmrWAl3A7" frameborder="0" allowtransparency="true" width="320" height="80"></iframe>'
+    }
+}, {
+    type: 'Feature',
+    "geometry": { "type": "Point", "coordinates": [-71.11467, 42.36866]},
+    "properties": {
+        "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Chicago_sunrise_1.jpg/640px-Chicago_sunrise_1.jpg",
+        "url": "http://en.wikipedia.org/wiki/Chicago",
+        "city": "Chicago",
+        "embed": '<iframe src="https://embed.spotify.com/?uri=spotify:track:7AHsgWs5RiLsIHe0vGiYaZ" frameborder="0" allowtransparency="true" width="320" height="80"></iframe>'
+    }
+}, {
+    type: 'Feature',
+    "geometry": { "type": "Point", "coordinates": [-71.11452, 42.37045]},
+    "properties": {
+        "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/3/39/NYC_Top_of_the_Rock_Pano.jpg/640px-NYC_Top_of_the_Rock_Pano.jpg",
+        "url": "http://en.wikipedia.org/wiki/New_York_City",
+        "city": "New York City",
+        "embed": '<iframe src="https://embed.spotify.com/?uri=spotify:track:6y0wtrV0rakeVmNusQsMGO" frameborder="0" allowtransparency="true" width="320" height="80"></iframe>'
+    }
+}, {
+    type: 'Feature',
+    "geometry": { "type": "Point", "coordinates": [-71.11742, 42.37154]},
+    "properties": {
+        "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/3/39/NYC_Top_of_the_Rock_Pano.jpg/640px-NYC_Top_of_the_Rock_Pano.jpg",
+        "url": "http://en.wikipedia.org/wiki/New_York_City",
+        "city": "New York City",
+        "embed":'<iframe src="https://embed.spotify.com/?uri=spotify:track:6S3j9FiR2G5uG0nI7ZbZjt" frameborder="0" allowtransparency="true" width="320" height="80"></iframe>'
+    }
+}];
+
+var map = L.mapbox.map('map', 'luis.map-yehmq8vd', {zoomControl: false})
+    .setView([42.36900, -71.11568], 16);
+map.dragging.disable();
+map.touchZoom.disable();
+map.doubleClickZoom.disable();
+map.scrollWheelZoom.disable();
+
+map.markerLayer.setGeoJSON(geoJson);
+
+
+var popup = L.popup();
+
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
+}
+
+map.on('click', onMapClick);
+
+map.markerLayer.on('ready', function(e) {
+    this.eachLayer(function(marker) {
+
+        var feature = marker.feature;
+
+        // Create custom popup content
+        var popupContent =  feature.properties.embed;
+
+        // http://leafletjs.com/reference.html#popup
+        marker.bindPopup(popupContent,{
+            closeButton: false,
+            minWidth: 320
+        });
+
+    });
+});
+
+var polyline = L.polyline([[42.36717,-71.11596], [42.36866,-71.11467], [42.37045,-71.11452], [42.37154,-71.11742]], {color: 'grey'}).addTo(map);
+
+
+</script>
+
+</body>
+</html>
+
