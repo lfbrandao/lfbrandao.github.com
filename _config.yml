@@ -1,0 +1,10 @@
+# Site settings
+title: Luís Filipe Brandão
+email: mail@luisbrandao.net
+description: ""
+baseurl: ""
+url: "http://luisbrandao.net"
+
+# Build settings
+markdown: kramdown
+permalink: pretty
