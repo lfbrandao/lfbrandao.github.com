@@ -6,15 +6,24 @@
   padding: 0;
 }
 
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('Inconsolata.woff2') format('woff2'),
+        url('Inconsolata.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
 html, body { height: 100%; }
 
 body {
   font-family: Inconsolata, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.5;
 }
 
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 400; }
+
 
 /*a         { color: #2a7ae2; text-decoration: none; }*/
 /*a:hover   { color: #000; text-decoration: underline; }*/
@@ -48,7 +57,6 @@ p.text {
 
 p.title {
   font-family: Inconsolata, Arial, sans-serif;
-  /*  font-weight: 900;*/
   padding: 0px 2px 0px 2px;
   border: 1px solid #F78181;
   display: inline-block;
@@ -64,7 +72,7 @@ p.anchor {
   color:#CC0000;
   margin: 0;
   padding: 0;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .no-padding p{
@@ -74,7 +82,7 @@ p.anchor {
 h1 {
   font-family: 'Inconsolata', Arial, sans-serif;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   /*padding: 2px;*/
   margin-bottom: 20px;
